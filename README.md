@@ -4,7 +4,7 @@ opinionated terraform module for provisioning vms in my homelab
 
 ```terraform
 module "test" {
-  source = "../../terraform-proxmox-vm"
+  source = "github.com/rssnyder/terraform-proxmox-vm"
 }
 ```
 
