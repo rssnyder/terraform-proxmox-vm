@@ -7,6 +7,7 @@ variable "snippet_datastore_id" {
 variable "node_name" {
   type        = string
   description = "name of the node to place the vm on"
+  default     = null
 }
 
 variable "vm_name" {
@@ -36,7 +37,7 @@ variable "size_gb" {
 variable "cpu" {
   type        = number
   description = "cores"
-  default     = 2
+  default     = 1
 }
 
 variable "memory" {
@@ -48,6 +49,7 @@ variable "memory" {
 variable "iso_id" {
   type        = string
   description = "source iso to use for vm"
+  default     = null
 }
 
 variable "tags" {
@@ -66,4 +68,10 @@ variable "datastore_id" {
   type        = string
   description = "datastore for root vm disk"
   default     = "data"
+}
+
+variable "default_image_url" {
+  type        = string
+  description = "cloud image to download for vm"
+  default     = "https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2"
 }

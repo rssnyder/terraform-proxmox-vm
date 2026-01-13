@@ -1,7 +1,7 @@
 resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
   content_type = "snippets"
   datastore_id = var.snippet_datastore_id
-  node_name    = var.node_name
+  node_name    = local.node_name
 
   source_raw {
     data = templatefile("${path.module}/cloud-config.yaml", {
@@ -14,14 +14,23 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
   }
 }
 
+resource "proxmox_virtual_environment_download_file" "default" {
+  count               = var.iso_id == null ? 1 : 0
+  content_type        = "import"
+  datastore_id        = var.snippet_datastore_id
+  node_name           = local.node_name
+  url                 = var.default_image_url
+  overwrite_unmanaged = true
+}
+
 resource "proxmox_virtual_environment_vm" "this" {
-  node_name = var.node_name
+  node_name = local.node_name
   name      = local.name
   tags      = concat(["terraform"], var.tags)
 
   disk {
     datastore_id = var.datastore_id
-    import_from  = var.iso_id
+    import_from  = var.iso_id == null ? proxmox_virtual_environment_download_file.default[0].id : var.iso_id
     interface    = "virtio0"
     iothread     = true
     discard      = "on"
