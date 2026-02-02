@@ -3,7 +3,7 @@ hostname: ${NAME}
 timezone: America/Chicago
 users:
   - default
-  - name: riley
+  - name: ${USERNAME}
     groups:
       - sudo
     shell: /bin/bash

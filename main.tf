@@ -1,5 +1,6 @@
 locals {
   name      = var.vm_name != null ? var.vm_name : random_pet.vm_name.id
+  dns_name  = var.dns_name != null ? var.dns_name : local.name
   node_name = var.node_name != null ? var.node_name : data.proxmox_virtual_environment_nodes.this.names[random_integer.node.result]
 }
 

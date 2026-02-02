@@ -10,6 +10,12 @@ variable "node_name" {
   default     = null
 }
 
+variable "dns_name" {
+  type        = string
+  description = "local dns name"
+  default     = null
+}
+
 variable "vm_name" {
   type        = string
   description = "name of the vm"
@@ -20,6 +26,12 @@ variable "packages" {
   type        = list(string)
   description = "additional packages to install"
   default     = []
+}
+
+variable "username" {
+  type        = string
+  description = "admin username"
+  default     = "riley"
 }
 
 variable "public_key" {
@@ -43,7 +55,7 @@ variable "cpu" {
 variable "memory" {
   type        = number
   description = "mb"
-  default     = 2048
+  default     = 512
 }
 
 variable "iso_id" {
