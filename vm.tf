@@ -8,7 +8,11 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
       NAME       = local.name
       USERNAME   = var.username
       PUBLIC_KEY = trimspace(var.public_key)
-      PACKAGES   = yamlencode(concat(["qemu-guest-agent"], var.packages))
+      PACKAGES = yamlencode(concat(
+        var.default_packages ? ["gcc", "git", "zsh"] : []
+        ["qemu-guest-agent"],
+        var.packages
+      ))
     })
 
     file_name = "${local.name}-user-data-cloud-config.yaml"
@@ -58,7 +62,9 @@ resource "proxmox_virtual_environment_vm" "this" {
     enabled = true
   }
 
+  protection = var.pet
+
   lifecycle {
-    ignore_changes = [disk[0].import_from]
+    ignore_changes = [disk[0].import_from, initialization[0].user_data_file_id]
   }
 }

@@ -28,6 +28,12 @@ variable "packages" {
   default     = []
 }
 
+variable "default_packages" {
+  type        = bool
+  description = "include default packages: (gcc git zsh)"
+  default     = true
+}
+
 variable "username" {
   type        = string
   description = "admin username"
@@ -86,4 +92,10 @@ variable "default_image_url" {
   type        = string
   description = "cloud image to download for vm"
   default     = "https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2"
+}
+
+variable "pet" {
+  type        = bool
+  description = "prevent destroy"
+  default     = false
 }
