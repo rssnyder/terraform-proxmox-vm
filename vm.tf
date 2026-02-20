@@ -9,10 +9,14 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
       USERNAME   = var.username
       PUBLIC_KEY = trimspace(var.public_key)
       PACKAGES = yamlencode(concat(
-        var.default_packages ? ["gcc", "git", "zsh"] : []
+        var.default_packages ? ["gcc", "git", "zsh"] : [],
         ["qemu-guest-agent"],
+        var.ttyd_password != null ? ["curl", "nano"] : [],
         var.packages
       ))
+      TTYD_ENABLED  = var.ttyd_password != null
+      TTYD_PASSWORD = var.ttyd_password
+      TTYD_PORT     = var.ttyd_port
     })
 
     file_name = "${local.name}-user-data-cloud-config.yaml"

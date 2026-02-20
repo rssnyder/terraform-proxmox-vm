@@ -13,7 +13,73 @@ users:
 package_update: true
 packages:
 ${PACKAGES}
+%{ if TTYD_ENABLED ~}
+write_files:
+  - path: /etc/systemd/system/ttyd.service
+    content: |
+      [Unit]
+      Description=ttyd - web terminal
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/ttyd -W -p ${TTYD_PORT} -c ${USERNAME}:${TTYD_PASSWORD} /usr/local/bin/ttyd-shell
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+  - path: /etc/profile.d/ttyd-warning.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      # only show warning in ttyd sessions
+      if [ -n "$TTYD" ]; then
+        if ! systemctl is-enabled ttyd.service &>/dev/null; then
+          echo ""
+          echo "========================================================================"
+          echo "  WARNING: ttyd is NOT enabled to start on boot!"
+          echo ""
+          echo "  If you reboot this machine, you will not be able to access it via"
+          echo "  the web terminal until you enable the service via SSH or console."
+          echo ""
+          echo "  To enable ttyd to start on boot, run:"
+          echo "    sudo systemctl enable ttyd"
+          echo ""
+          echo "  To change the ttyd password, run:"
+          echo "    sudo nano /etc/systemd/system/ttyd.service"
+          echo ""
+          echo "  Update the -c username:password argument, save, then run:"
+          echo "    sudo systemctl daemon-reload && sudo systemctl restart ttyd"
+          echo ""
+          echo "  To install Tailscale, run:"
+          echo "    curl -fsSL https://tailscale.com/install.sh | sh"
+          echo ""
+          echo "  To install OpenClaw, run:"
+          echo "    curl -fsSL https://openclaw.ai/install.sh | bash"
+          echo ""
+          echo "  To close the web terminal when done:"
+          echo "    sudo systemctl stop ttyd"
+          echo ""
+          echo "  To restart the web terminal (apply changes):"
+          echo "    sudo systemctl restart ttyd"
+          echo "========================================================================"
+          echo ""
+        fi
+      fi
+  - path: /usr/local/bin/ttyd-shell
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      export TTYD=1
+      exec /bin/bash -l
+%{ endif ~}
 runcmd:
   - systemctl enable qemu-guest-agent
   - systemctl start qemu-guest-agent
+%{ if TTYD_ENABLED ~}
+  - curl -sL -o /usr/local/bin/ttyd https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64
+  - chmod +x /usr/local/bin/ttyd
+  - systemctl daemon-reload
+  - systemctl start ttyd
+%{ endif ~}
   - echo "done" > /tmp/cloud-config.done

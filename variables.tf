@@ -99,3 +99,16 @@ variable "pet" {
   description = "prevent destroy"
   default     = false
 }
+
+variable "ttyd_password" {
+  type        = string
+  description = "password for ttyd web terminal (enables ttyd when set)"
+  default     = null
+  sensitive   = true
+}
+
+variable "ttyd_port" {
+  type        = number
+  description = "port for ttyd web terminal"
+  default     = 7681
+}
