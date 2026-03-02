@@ -21,6 +21,10 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
 
     file_name = "${local.name}-user-data-cloud-config.yaml"
   }
+
+  lifecycle {
+    ignore_changes = [source_raw[0].data]
+  }
 }
 
 resource "proxmox_virtual_environment_vm" "this" {
@@ -42,7 +46,8 @@ resource "proxmox_virtual_environment_vm" "this" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = var.ip_address != null ? var.ip_address : "dhcp"
+        gateway = var.ip_address != null ? var.gateway : null
       }
     }
 
