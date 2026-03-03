@@ -57,8 +57,8 @@ resource "proxmox_virtual_environment_vm" "this" {
   dynamic "usb" {
     for_each = var.usb
     content {
-      host = usb.host
-      usb3 = usb.usb3
+      host = usb.value.host
+      usb3 = usb.value.usb3
     }
     
   }
