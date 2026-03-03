@@ -124,3 +124,11 @@ variable "gateway" {
   description = "gateway for static ip"
   default     = "192.168.2.1"
 }
+
+variable "usb" {
+  type = list(object({
+    host = string
+    usb3 = bool
+  }))
+  default = null
+}

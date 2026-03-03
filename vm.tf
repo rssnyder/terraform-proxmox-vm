@@ -9,7 +9,7 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
       USERNAME   = var.username
       PUBLIC_KEY = trimspace(var.public_key)
       PACKAGES = yamlencode(concat(
-        var.default_packages ? ["gcc", "git", "zsh"] : [],
+        var.default_packages ? ["gcc", "git", "zsh", "tmux"] : [],
         ["qemu-guest-agent"],
         var.ttyd_password != null ? ["curl", "nano"] : [],
         var.packages
@@ -52,6 +52,15 @@ resource "proxmox_virtual_environment_vm" "this" {
     }
 
     user_data_file_id = proxmox_virtual_environment_file.user_data_cloud_config.id
+  }
+
+  dynamic "usb" {
+    for_each = var.usb
+    content {
+      host = usb.host
+      usb3 = usb.usb3
+    }
+    
   }
 
   cpu {
