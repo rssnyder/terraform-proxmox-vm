@@ -130,5 +130,5 @@ variable "usb" {
     host = string
     usb3 = bool
   }))
-  default = null
+  default = []
 }
