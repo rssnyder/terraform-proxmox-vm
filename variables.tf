@@ -112,3 +112,23 @@ variable "ttyd_port" {
   description = "port for ttyd web terminal"
   default     = 7681
 }
+
+variable "ip_address" {
+  type        = string
+  description = "static ip address in CIDR notation (e.g. 192.168.1.100/24), uses DHCP if not set"
+  default     = null
+}
+
+variable "gateway" {
+  type        = string
+  description = "gateway for static ip"
+  default     = "192.168.2.1"
+}
+
+variable "usb" {
+  type = list(object({
+    host = string
+    usb3 = bool
+  }))
+  default = null
+}
