@@ -60,7 +60,7 @@ resource "proxmox_virtual_environment_vm" "this" {
       host = usb.value.host
       usb3 = usb.value.usb3
     }
-    
+
   }
 
   cpu {
