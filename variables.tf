@@ -1,7 +1,7 @@
 variable "snippet_datastore_id" {
   type        = string
   description = "datastore to use for snippet files"
-  default     = "ben"
+  default     = "baelor"
 }
 
 variable "node_name" {
