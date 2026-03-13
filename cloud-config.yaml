@@ -13,6 +13,9 @@ users:
 package_update: true
 packages:
 ${PACKAGES}
+%{ if NODE_EXPORTER_ENABLED ~}
+  - prometheus-node-exporter
+%{ endif ~}
 %{ if TTYD_ENABLED ~}
 write_files:
   - path: /etc/systemd/system/ttyd.service

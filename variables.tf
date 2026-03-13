@@ -132,3 +132,15 @@ variable "usb" {
   }))
   default = []
 }
+
+variable "node_exporter_enabled" {
+  type        = bool
+  description = "create SRV record for prometheus node exporter discovery"
+  default     = true
+}
+
+variable "node_exporter_port" {
+  type        = number
+  description = "port for prometheus node exporter"
+  default     = 9100
+}

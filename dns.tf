@@ -9,3 +9,14 @@ resource "unifi_dns_record" "ttyd" {
   type   = "A"
   record = proxmox_virtual_environment_vm.this.ipv4_addresses[1][0]
 }
+
+resource "unifi_dns_record" "prometheus_srv" {
+  count = var.node_exporter_enabled ? 1 : 0
+
+  name     = "_prometheus._tcp.${var.domain}"
+  type     = "SRV"
+  record   = "${local.dns_name}.${var.domain}"
+  port     = var.node_exporter_port
+  priority = 0
+  weight   = 0
+}

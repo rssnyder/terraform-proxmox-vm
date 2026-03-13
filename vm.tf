@@ -14,9 +14,10 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
         var.ttyd_password != null ? ["curl", "nano"] : [],
         var.packages
       ))
-      TTYD_ENABLED  = var.ttyd_password != null
-      TTYD_PASSWORD = var.ttyd_password
-      TTYD_PORT     = var.ttyd_port
+      TTYD_ENABLED          = var.ttyd_password != null
+      TTYD_PASSWORD         = var.ttyd_password
+      TTYD_PORT             = var.ttyd_port
+      NODE_EXPORTER_ENABLED = var.node_exporter_enabled
     })
 
     file_name = "${local.name}-user-data-cloud-config.yaml"
