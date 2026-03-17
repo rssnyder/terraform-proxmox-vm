@@ -16,7 +16,7 @@ resource "unifi_dns_record" "prometheus_srv" {
   name     = "_prometheus._tcp.${var.domain}"
   type     = "SRV"
   record   = "${local.dns_name}.${var.domain}"
-  port     = var.node_exporter_port
-  priority = 0
+  port     = 9100
+  priority = 1
   weight   = 0
 }

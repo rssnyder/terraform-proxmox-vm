@@ -9,15 +9,15 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
       USERNAME   = var.username
       PUBLIC_KEY = trimspace(var.public_key)
       PACKAGES = yamlencode(concat(
-        var.default_packages ? ["gcc", "git", "zsh", "tmux"] : [],
         ["qemu-guest-agent"],
+        var.default_packages ? ["gcc", "git", "zsh", "tmux"] : [],
         var.ttyd_password != null ? ["curl", "nano"] : [],
+        var.node_exporter_enabled ? ["prometheus-node-exporter"] : [],
         var.packages
       ))
-      TTYD_ENABLED          = var.ttyd_password != null
-      TTYD_PASSWORD         = var.ttyd_password
-      TTYD_PORT             = var.ttyd_port
-      NODE_EXPORTER_ENABLED = var.node_exporter_enabled
+      TTYD_ENABLED  = var.ttyd_password != null
+      TTYD_PASSWORD = var.ttyd_password
+      TTYD_PORT     = var.ttyd_port
     })
 
     file_name = "${local.name}-user-data-cloud-config.yaml"
@@ -35,7 +35,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   disk {
     datastore_id = var.datastore_id
-    import_from  = var.iso_id
+    import_from  = local.iso_id
     interface    = "virtio0"
     iothread     = true
     discard      = "on"
