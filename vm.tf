@@ -87,3 +87,10 @@ resource "proxmox_virtual_environment_vm" "this" {
     ignore_changes = [disk[0].import_from, initialization[0].user_data_file_id]
   }
 }
+
+locals {
+  ips = [
+    for ip in flatten(proxmox_virtual_environment_vm.this.ipv4_addresses) :
+    ip if startswith(ip, "192.168.2.")
+  ]
+}
