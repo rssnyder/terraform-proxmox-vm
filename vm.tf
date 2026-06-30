@@ -42,6 +42,8 @@ resource "proxmox_virtual_environment_vm" "this" {
     size         = var.size_gb
   }
 
+  scsi_hardware = var.scsi_hardware
+
   initialization {
     datastore_id = var.snippet_datastore_id
 

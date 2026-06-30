@@ -138,3 +138,8 @@ variable "node_exporter_enabled" {
   description = "create SRV record for prometheus node exporter discovery"
   default     = true
 }
+
+variable "scsi_hardware" {
+  type    = string
+  default = "virtio-scsi-pci"
+}
