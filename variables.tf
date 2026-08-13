@@ -125,6 +125,18 @@ variable "gateway" {
   default     = "192.168.2.1"
 }
 
+variable "dns_servers" {
+  type        = list(string)
+  description = "resolvers for the guest. a static ip_address does not carry DNS with it, so guests that need the local zone (.r.ss lives on the router) should set this explicitly. unset leaves whatever DHCP hands out"
+  default     = null
+}
+
+variable "dns_search_domain" {
+  type        = string
+  description = "search domain for the guest resolver. distinct from var.domain, which is the suffix for the DNS record this module creates"
+  default     = null
+}
+
 variable "usb" {
   type = list(object({
     host = string
@@ -142,4 +154,10 @@ variable "node_exporter_enabled" {
 variable "scsi_hardware" {
   type    = string
   default = "virtio-scsi-pci"
+}
+
+variable "nic_queues" {
+  type        = number
+  description = "virtio-net multiqueue pairs. a single queue pins one flow's packet processing to one vcpu, which caps single-stream throughput regardless of core count; set this to the vcpu count to spread it. null leaves the single-queue default"
+  default     = null
 }

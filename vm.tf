@@ -54,6 +54,14 @@ resource "proxmox_virtual_environment_vm" "this" {
       }
     }
 
+    dynamic "dns" {
+      for_each = var.dns_servers != null || var.dns_search_domain != null ? [1] : []
+      content {
+        servers = var.dns_servers
+        domain  = var.dns_search_domain
+      }
+    }
+
     user_data_file_id = proxmox_virtual_environment_file.user_data_cloud_config.id
   }
 
@@ -77,6 +85,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   network_device {
     bridge = "vmbr0"
+    queues = var.nic_queues
   }
 
   agent {
