@@ -86,7 +86,7 @@ resource "proxmox_virtual_environment_vm" "this" {
   protection = var.pet
 
   lifecycle {
-    ignore_changes = [disk[0].import_from, initialization[0].user_data_file_id]
+    ignore_changes = [disk[0].import_from, initialization[0].user_data_file_id, started]
   }
 }
 

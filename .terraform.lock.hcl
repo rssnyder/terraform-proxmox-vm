@@ -5,6 +5,19 @@ provider "registry.opentofu.org/bpg/proxmox" {
   version = "0.93.0"
   hashes = [
     "h1:/05FygzgUbFUKWgJ9k2MW5Ij84Ehy+rHYHgRUoluFb8=",
+    "h1:/MsIohHi1eQRM2x1xWoJ9Va95ow+T2RSCM+uUxEFnAs=",
+    "h1:09Qcp3ycMx7CybVkJc1TcZvZXo6rTzDEBOr9MEx3wAQ=",
+    "h1:3VqhLeBaEUVkGlxX9dE8xjDMkTDTQYLF0NEBWzinA6s=",
+    "h1:APGfb1LE52gzmP1Whdf7dQE6tE7YtTeSb2pYQYaoQJY=",
+    "h1:B/hT/bi51XMlkSi7UcCZe9ZtsXzeJwYkSZ4c9w2WjVI=",
+    "h1:CV9fHAOZK4ltb3Hfr3bNcdvnYFIBJt/suo9wekTdvTI=",
+    "h1:MsRkHrpQV2rC0H7i9IpEz8qxcHeJGnwR3CVakLuCfd4=",
+    "h1:Qx8cc0Z4I1yps18Q/oTPEz6y/+illpzdulKN21mcYv4=",
+    "h1:W7dr6CxTh64C97r2i0kDe1PVUsreKVlNo906a91/tYk=",
+    "h1:cMk5+eTKXH+VmffYNXrib5JIquRY1A4ueSt+pfj3iko=",
+    "h1:u2T3pPbDJwWRegi5hsxuDwva1T7w0nKMZWrGzcbC3NU=",
+    "h1:uTdd5qeuEwNlmXSgJ23I079BL+7KNkY1PygqKe04ffw=",
+    "h1:yYhnmVwP6UtwAYaPMUyGQiicg+adzLj3q3gsE3Ve8UE=",
     "zh:0e497d36981f5b70edc9ac23287222d17854781a911c4c44a058ca0ba7a7807f",
     "zh:1276a3db28ab442ebc47eac9d6505b1b86aa7c525a0c1e630802e6199f074721",
     "zh:37ceacc53fcfdb7a6e7b9c67400203c516a68e7b8caf2f99b2d4f68f6a62971f",
@@ -26,7 +39,20 @@ provider "registry.opentofu.org/bpg/proxmox" {
 provider "registry.opentofu.org/filipowm/unifi" {
   version = "1.0.0"
   hashes = [
+    "h1:/gnz20UwjyfUrodNJ8QAP0YN1W8Fqx8WupjtCR9pNj0=",
+    "h1:4vve38uotYXxHMk6SUXWNgbAQZTdNQ8e4XHijtdiT3Y=",
+    "h1:BomqlExPPMnhnqsvx3wnZT4ba7zR6hWTun0VWkbK8n0=",
+    "h1:PWJVdkpPdwEhGnxLURJ1k2uP8QG9LlkB99vjc2AKj6A=",
     "h1:TW+9bErV4fdS8k+DRk2a/6l97QI3Ui3N6zk5NG3TD0U=",
+    "h1:UtQRhghS5c4PovUwB5/AqsszLBB82jDJzF2kpRRyv3k=",
+    "h1:W1Il3doHU3rm32lXK4dYDNx7voN2KcG68K5Ae38zSok=",
+    "h1:Xk9jrHk/DgV2dDldv5F3IvssLu8tWRZe5UYosuABmLQ=",
+    "h1:aCbVe+SAxqPjXJSPwn4MFbCZCITclPicW+NPIffLZT8=",
+    "h1:aqoyVyOhdCLWg+4Pti1sNJm+zs+kTfWPxedVfBFo+Cs=",
+    "h1:eI7Uku1AduNOvFIAoiPzzFTW0aM4zZb5vX2XfepjpeQ=",
+    "h1:hkgm7kRZZnhdlPWZaTDdKaxOrH6zlr7YVzzr2WHxOSk=",
+    "h1:jnvXamy7l0/5/2o4nGcRg33PMu7p12MKqY+Rnsp4fl4=",
+    "h1:w7iFidVB4iuB7uiKpHNxD4z37eIISJGLfSRN3/zeYio=",
     "zh:002a2d08c4ed02cced5178659c9f8995cbc58f6721745a5d3f9c8a907ec6f5e9",
     "zh:16459400ee198f0099da758256732ee9d3e0fd873d0fe99f92cfc3742cde62ac",
     "zh:53cfb0f2bcb248485501e182ab0273b1fa911420863ab5984b20cfea715da5aa",
@@ -47,6 +73,15 @@ provider "registry.opentofu.org/filipowm/unifi" {
 provider "registry.opentofu.org/hashicorp/random" {
   version = "3.7.2"
   hashes = [
+    "h1:5wxrQQTchfk/2S1wSi9lx/fmiscVLGI3kL2v/+LccHU=",
+    "h1:C1D2Vo445WXAeLwSpovebSDR97ohiGvXVixcXJneQTg=",
+    "h1:KvLLxlMi6iNdlZS+vQAwovIeL2r5Q2s/EXXF+oypKHI=",
+    "h1:Q1EQQw7icbHSYUSYMlgi4qSXPuJDySuMjXcC0WqzgP8=",
+    "h1:cFGCdxTlsrteTiaOV/iOQdql7eJkD3F/vtJxenkj9IE=",
+    "h1:o15Kr/27vFN5AD9YkF48tDrHLSAshEq4Q7sAxIViZHM=",
+    "h1:rdpkD+Rzr+KCPqOvb1ckzupjWCOum/boRX4FqVboAHQ=",
+    "h1:ttMGebt31P1FZCEWptLTMpmx1aeDvkJ9nBDivtCCkyM=",
+    "h1:wz31hqWhHTq9bgIM/3+VNqy89JAICMXSwCmG8A70w0A=",
     "h1:yHMBbZOIHlXUuBQ8Mhioe0hwmhermuboq2eNNoCJaf8=",
     "zh:2ffeb1058bd7b21a9e15a5301abb863053a2d42dffa3f6cf654a1667e10f4727",
     "zh:519319ed8f4312ed76519652ad6cd9f98bc75cf4ec7990a5684c072cf5dd0a5d",
